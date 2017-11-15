@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <title>Document</title>
+            
+            <style type="text/css">
+                #bg{
+                    width:100px;
+                    height:100px;
+                    border:2px solid red;
+                }
+            </style>
+            <script type="text/javascript">
+                window.onload=function(){
+                    document.getElementById("myDiv").style.backgroundColor="#F90";
+                }
+            
+            //监听从React Native发过来的消息：
+            document.addEventListener('message', function (e) {
+                                      const message = e.data;
+                                      console.log(message);
+                                      
+                                      //如果不是来自指定Domain的，则忽略
+                                      // if(ev.origin !="http://localhost:8090/html/test.html"){
+                                      //     console.log("the event doesn't come from Domain1!");
+                                      //     return;
+                                      // }
+                                      // var video= document.getElementById("myvideo");
+                                      // video.play();
+                                      })
+                                      
+                                      function myFunction(id){
+                                          // document.getElementById("myPar").innerHTML="Hello World";
+                                          // document.getElementById("myDiv").innerHTML="How are you?";
+                                          // var a =document.getElementById("myDiv").innerHTML;
+                                          // if (a =='How are you?'&&a!=undefined) {
+                                          //     console.log('yes');
+                                          // }
+                                          //给React Native发消息
+                                          window.postMessage(id,'*');
+                                      }
+            
+            function h5ToOCNOpargramsFunction(id){
+                // alert('h5调用OC不带参数');
+                test1();
+            }
+            
+            function h5ToOCpargramsFunction(id,name){
+                // alert('h5调用OC带参数');
+                test2('参数1','参数2');
+            }
+            
+            function ocTojsNOpargrams(){
+                alert("OC调用了无参数的js方法");
+            }
+            
+            function ocTojspargrams(name,num){
+                alert(name + num);
+            }
+            
+                </script>
+    </head>
+    <body>
+        <button id="h5ToOCNOpargrams" type="h5ToOCNOpargrams" title="h5ToOCNOpargrams" style="width: 300px;height: 40px"  onclick="h5ToOCNOpargramsFunction(this.id)">h5调用OC(不带参数)</button>
+        <br/>
+        <button id="h5ToOCpargrams" type="h5ToOCpargrams" title="h5ToOCpargrams" style="width: 250px;height: 40px;margin-top: 10px"  onclick="h5ToOCpargramsFunction(this.id,this.title)">h5调用OC(参数)</button>
+    </body>
+</html>
